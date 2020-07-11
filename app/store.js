@@ -37,13 +37,14 @@ class Store {
     if (confirm("Delete List?") == true) {
       let indexToRemove = _state.lists.findIndex(i => i.id == id)
       _state.lists.splice(indexToRemove, 1)
-      console.log(indexToRemove)
     }
   }
 
 
   crossOutItems(taskName) {
-    document.getElementById(taskName).innerHTML = "<del>" + taskName + "</del>"
+    if (document.getElementById(taskName).innerHTML === "<del>" + taskName + "</del>") {
+      document.getElementById(taskName).innerHTML = taskName
+    } else {document.getElementById(taskName).innerHTML = "<del>" + taskName + "</del>"}
   }
 
 
@@ -57,9 +58,6 @@ class Store {
       }
     }
   }
-
-
-
 
 
   /**

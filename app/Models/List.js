@@ -5,7 +5,7 @@ export default class List {
     //TODO Your constructor takes in a data object that should have the properties you need to create your list here is a freebie, it will set the id its provided, or if that is undefined it will create a new one (this is an alternative to object destructuring)
     this.id = data.id || generateId()
     this.list = data.list || "New Task List"
-     /**@type {string[]} */
+    /**@type {string[]} */
     this.task = data.task || []
   }
   //Be sure to add the methods needed to create the view template for this model
@@ -14,13 +14,14 @@ export default class List {
 
 
   get Template() {
-    let template = /*html*/ `
+    let template = 
+  /*html*/ `
 
-<div class="col-4">
+<div class="col-xs-12 col-md-6 col-xl-3">
 <div class="card m-3" style="width: 18rem;">
-  <div class="card-header">
+  <div class="card-header font-weight-bold">
     ${this.list}
-    <button class="btn btn-danger" onclick="app.listController.deleteList('${this.id}')">Delete List</button>
+    <p><button class="btn btn-sm btn-danger" onclick="app.listController.deleteList('${this.id}')">Delete List</button></p>
   </div>
   
   <form class="m-3" onsubmit="app.listController.addTask(event, '${this.id}')">
@@ -28,12 +29,12 @@ export default class List {
       <label for="createNewTask"></label>
       <input type="text" name="createNewTask" class="form-control" placeholder="Create a new task...">
     </div>
-    <button type="submit" class="btn btn-primary">Create New Task</button>
+    <button type="submit" class="btn btn-sm btn-primary">Create New Task</button>
   </form>
   <ul class="list-group list-group-flush">
 `
 
-this.task.forEach(i => template +=
+    this.task.forEach(i => template +=
  /*html*/ `
 
       <li class="list-group-item">
@@ -44,7 +45,12 @@ this.task.forEach(i => template +=
     `
     )
 
-  template += `</ul></div></div>`
+    template +=
+      `
+    </ul>
+  </div>
+</div>
+  `
 
     return template
   }

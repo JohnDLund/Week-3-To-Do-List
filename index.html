@@ -14,20 +14,20 @@
 <body class="bg-success">
 
   <header class="container-fluid">
-    <div class="row">
-      <form class="col-12" onsubmit="app.listController.addMainList(event)">
+    <div class="row mb-3">
+      <form class="col-4 box-shadow" onsubmit="app.listController.addMainList(event)">
         <div class="form-group">
           <label for="createNewList"></label>
-          <input type="text" name="createNewList" class="form-control" placeholder="Create a new list...">
+          <input type="text" name="createNewList" class="form-control" placeholder="Enter a new list name...">
         </div>
-        <button type="submit" class="btn btn-primary">Create New List</button>
+        <button type="submit" class="btn btn-block btn-primary">Create New List</button>
       </form>
     </div>
   </header>
 
 
   <main class="container-fluid">
-    <div id="taskListCard" class="text-center justify-content-center row">
+    <div id="taskListCard" class="row text-center justify-content-center">
       <!-- <div class="card" style="width: 18rem;">
           <div class="card-header">
             Featured

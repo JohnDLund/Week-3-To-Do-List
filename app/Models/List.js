@@ -3,9 +3,10 @@ import { generateId } from "../utils.js";
 export default class List {
   constructor(data) {
     //TODO Your constructor takes in a data object that should have the properties you need to create your list here is a freebie, it will set the id its provided, or if that is undefined it will create a new one (this is an alternative to object destructuring)
-    this.id = data.id || generateId();
+    this.id = data.id || generateId()
     this.list = data.list || "New Task List"
-    this.taskItem = data.taskItem || "new Task Item"
+     /**@type {string[]} */
+    this.task = data.task || []
   }
   //Be sure to add the methods needed to create the view template for this model
   //For starting out, your tasks may be strings alone, but later you may wish to turn them into full objects, that will be up to you
@@ -19,23 +20,40 @@ export default class List {
 <div class="card m-3" style="width: 18rem;">
   <div class="card-header">
     ${this.list}
+    <button class="btn btn-danger" onclick="app.listController.deleteList('${this.id}')">Delete List</button>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><i onclick="app.listController.crossOutItem()" class="fa fa-check px-3"></i>${this.taskItem}<i onclick="app.listController.deleteListItem()" class="fa fa-times px-3"></i></li>
-  </ul>
-  <form class="m-3" onsubmit="app.listController.addTask(event)">
+  
+  <form class="m-3" onsubmit="app.listController.addTask(event, '${this.id}')">
     <div class="form-group">
-      <label for="createNewTaskList"></label>
+      <label for="createNewTask"></label>
       <input type="text" name="createNewTask" class="form-control" placeholder="Create a new task...">
     </div>
     <button type="submit" class="btn btn-primary">Create New Task</button>
   </form>
-</div>
-  </div>
+  <ul class="list-group list-group-flush">
 `
-    return template
 
+this.task.forEach(i => template +=
+ /*html*/ `
+
+      <li class="list-group-item">
+        <i onclick="app.listController.crossOutItem('${i}')" class="fa fa-check px-3"></i>
+        <span id="${i}">${i}</span>
+        <i onclick="app.listController.deleteTask('${i}')" class="fa fa-times px-3"></i>
+      </li>
+    `
+    )
+
+  template += `</ul></div></div>`
+
+    return template
   }
 
+
+
+
+
+
 }
+
 

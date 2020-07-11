@@ -20,6 +20,48 @@ function _loadState() {
 _loadState();
 
 class Store {
+
+
+  addMainList(newTaskList) {
+    _state.lists.push(newTaskList)
+
+  }
+
+  addTask(foundListId, rawTaskData) {
+    if (rawTaskData) {
+      _state.lists[foundListId].task.push(rawTaskData)
+    }
+  }
+
+  deleteList(id) {
+    if (confirm("Delete List?") == true) {
+      let indexToRemove = _state.lists.findIndex(i => i.id == id)
+      _state.lists.splice(indexToRemove, 1)
+      console.log(indexToRemove)
+    }
+  }
+
+
+  crossOutItems(taskName) {
+    document.getElementById(taskName).innerHTML = "<del>" + taskName + "</del>"
+  }
+
+
+  deleteTask(taskName) {
+    if (confirm("Delete Task?") == true) {
+      for (let i = 0; i < _state.lists.length; i++) {
+        for (let y = 0; y < _state.lists[i].task.length; y++) {
+          if (_state.lists[i].task[y] == taskName)
+            _state.lists[i].task.splice(y, 1)
+        }
+      }
+    }
+  }
+
+
+
+
+
   /**
    * Provides access to application state data
    */
@@ -32,15 +74,6 @@ class Store {
     localStorage.setItem("TaskMaster", JSON.stringify(_state));
   }
 
-  addMainList(newTaskList) {
-    _state.lists.push(newTaskList)
-    console.log(_state)
-  }
-
-  addTask(foundListId, newTaskData) {
-    _state.lists[foundListId].taskItem.push(newTaskData)
-
-  }
 }
 
 const store = new Store();

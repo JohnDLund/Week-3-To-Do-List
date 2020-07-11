@@ -8,12 +8,17 @@ function _drawLists() {
   document.getElementById("taskListCard").innerHTML = template
 }
 
+// function _drawTasks() {
+//   let template = ""
+//   _store.State.lists.forEach(i => template += i.Template)
+//   document.getElementById("tasks").innerHTML += template
+// }
+
 //Public
 export default class ListController {
   constructor() {
     //NOTE: After the store loads, we can automatically call to draw the lists.
     _drawLists();
-    console.log("hellow from controller")
   }
 
   addMainList(event) {
@@ -24,18 +29,34 @@ export default class ListController {
     _listService.addMainList(rawListData)
     event.target.reset()
     _drawLists()
+    _store.saveState()
   }
 
   addTask(event, listId) {
     event.preventDefault()
-    let rawTaskData = {
-      taskItem: event.target.createNewTask.value
-    }
+    let rawTaskData = event.target.createNewTask.value
     _listService.addTask(rawTaskData, listId)
     event.target.reset()
     _drawLists()
+    _store.saveState()
+  }
 
+  crossOutItem(task) {
+     _listService.crossOutItems(task)
+    _drawLists
+    _store.saveState()
+  }
 
+  deleteList(id) {
+    _listService.deleteList(id)
+    _drawLists()
+    _store.saveState()
+  }
+
+  deleteTask(task) {
+    _listService.deleteTask(task)
+    _drawLists()
+    _store.saveState()
   }
 
 

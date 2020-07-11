@@ -18,12 +18,28 @@ class ListService {
     store.addMainList(newList)
   }
 
-  addTask(newTaskData, listId) {
+  addTask(rawTaskData, listId) {
     let foundListId = store.State.lists.findIndex(list => list.id == listId)
-    store.addTask(foundListId, newTaskData)
+    store.addTask(foundListId, rawTaskData)
   }
 
+  crossOutItems(task) {
+    store.crossOutItems(task)
+  }
+
+  deleteList(id) {
+    store.deleteList(id)
+  }
+
+  deleteTask(task) {
+    store.deleteTask(task)
+  }
+
+
+
 }
+
+
 
 const SERVICE = new ListService();
 export default SERVICE;

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css" />
+  <title>TaskMaster</title>
+</head>
+
+<body class="bg-success">
+
+  <header class="container-fluid">
+    <div class="row">
+      <form class="col-12" onsubmit="app.listController.addMainList(event)">
+        <div class="form-group">
+          <label for="createNewList"></label>
+          <input type="text" name="createNewList" class="form-control" placeholder="Create a new list...">
+        </div>
+        <button type="submit" class="btn btn-primary">Create New List</button>
+      </form>
+    </div>
+  </header>
+
+
+  <main class="container-fluid">
+    <div id="taskListCard" class="text-center justify-content-center row">
+      <!-- <div class="card" style="width: 18rem;">
+          <div class="card-header">
+            Featured
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i onclick="app.ListController.crossOutItem()" class="fa fa-check px-3"></i>Cras
+              justo odio<i onclick="app.ListController.deleteListItem()" class="fa fa-times px-3"></i></li>
+          </ul>
+          <form class="m-3" onsubmit="app.ListController.addTask(event)">
+            <div class="form-group">
+              <label for="createNewTaskList"></label>
+              <input type="text" name="createNewTask" class="form-control" placeholder="Create a new task...">
+            </div>
+            <button type="submit" class="btn btn-primary">Create New Task</button>
+          </form>
+        </div> -->
+
+
+
+
+  </main>
+
+
+
+
+
+
+
+  <script src="app/main.js" type="module"></script>
+</body>
+
+</html>
